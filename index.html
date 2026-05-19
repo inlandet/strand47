@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strand 47 – Vår gård</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #2C5F2E;
+  --forest-light: #4a8c4d;
+  --forest-pale: #eaf4ea;
+  --bark: #5c4a2a;
+  --stone: #8a8275;
+  --cream: #f7f4ef;
+  --warm-white: #fdfbf8;
+  --ink: #1a1a16;
+  --muted: #6b6860;
+  --amber: #c47c1a;
+  --amber-pale: #fdf3e0;
+  --red: #a32d2d;
+  --red-pale: #fdf0f0;
+  --sky: #1a5c8a;
+  --sky-pale: #e8f3fb;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(247,244,239,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(44,95,46,0.12);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 52px;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--forest);
+  margin-right: auto;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { background: var(--forest-pale); color: var(--forest); }
+
+/* HERO */
+.hero {
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4rem 3rem 4rem;
+  background: var(--forest);
+  position: relative;
+  overflow: hidden;
+}
+.hero-texture {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(74,140,77,0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(44,95,46,0.4) 0%, transparent 40%),
+    radial-gradient(circle at 60% 80%, rgba(92,74,42,0.2) 0%, transparent 40%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-content { position: relative; z-index: 1; max-width: 900px; }
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.hero h1 em { font-style: italic; color: rgba(255,255,255,0.7); }
+.hero-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 300;
+  max-width: 520px;
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.hero-stat-val {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+  font-weight: 300;
+}
+.verdict-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 30px;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+.verdict-dot { width: 7px; height: 7px; border-radius: 50%; background: #7ee87a; }
+
+/* SECTIONS */
+section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--forest);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.section-sub {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 600px;
+  margin-bottom: 3rem;
+  font-weight: 300;
+  line-height: 1.7;
+}
+.divider { width: 48px; height: 2px; background: var(--forest); margin: 1.5rem 0 2.5rem; }
+
+/* CARDS */
+.card-grid { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.card {
+  background: var(--warm-white);
+  border: 1px solid rgba(44,95,46,0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+.card-accent { border-left: 3px solid var(--forest); border-radius: 0 16px 16px 0; }
+.card-amber { border-left: 3px solid var(--amber); border-radius: 0 16px 16px 0; }
+.card-red { border-left: 3px solid var(--red); border-radius: 0 16px 16px 0; }
+
+.stat-card {
+  background: var(--forest);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: #fff;
+}
+.stat-card .label { font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 8px; font-weight: 300; }
+.stat-card .value { font-family: var(--serif); font-size: 2rem; font-weight: 500; color: #fff; line-height: 1; }
+.stat-card .sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 6px; font-weight: 300; }
+
+.light-stat {
+  background: var(--forest-pale);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+.light-stat .label { font-size: 12px; color: var(--forest); margin-bottom: 8px; font-weight: 400; }
+.light-stat .value { font-family: var(--serif); font-size: 1.8rem; font-weight: 500; color: var(--forest); line-height: 1; }
+.light-stat .sub { font-size: 12px; color: #4a8c4d; margin-top: 6px; font-weight: 300; }
+
+/* TABLES */
+.data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.data-table th {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--forest-pale); }
+.data-table .bold { font-weight: 500; }
+.data-table .right { text-align: right; }
+.data-table .green { color: var(--forest); }
+.data-table .amber { color: var(--amber); }
+.data-table .red { color: var(--red); }
+.data-table .total td { font-weight: 500; background: var(--forest-pale); border-top: 2px solid rgba(44,95,46,0.2); }
+
+/* BADGES */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.badge-green { background: var(--forest-pale); color: var(--forest); }
+.badge-amber { background: var(--amber-pale); color: var(--amber); }
+.badge-red { background: var(--red-pale); color: var(--red); }
+.badge-sky { background: var(--sky-pale); color: var(--sky); }
+
+/* VERDICT BOXES */
+.verdict-box {
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.verdict-ok { background: var(--forest-pale); color: #27500A; }
+.verdict-warn { background: var(--amber-pale); color: #633806; }
+.verdict-danger { background: var(--red-pale); color: #7a1f1f; }
+.verdict-info { background: var(--sky-pale); color: #0c447c; }
+.verdict-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+/* STACKED BAR */
+.stacked-bar { display: flex; height: 28px; border-radius: 8px; overflow: hidden; margin: 12px 0 8px; }
+.seg { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; white-space: nowrap; overflow: hidden; padding: 0 4px; }
+
+/* PROGRESS */
+.prog-row { margin-bottom: 14px; }
+.prog-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+.prog-label span:first-child { color: var(--ink); }
+.prog-label span:last-child { color: var(--muted); font-size: 12px; }
+.prog-track { height: 6px; background: rgba(0,0,0,0.08); border-radius: 3px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 3px; background: var(--forest); transition: width 1s ease; }
+
+/* GANTT */
+.gantt-wrap { overflow-x: auto; }
+.gantt { width: 100%; border-collapse: collapse; min-width: 700px; }
+.gantt th { font-size: 10px; color: var(--muted); font-weight: 400; padding: 4px 2px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.08); }
+.gantt th.task-col { text-align: left; padding-left: 0; font-size: 11px; min-width: 180px; }
+.gantt th.who-col { min-width: 50px; }
+.gantt td { padding: 2px; vertical-align: middle; }
+.gantt td.task-col { font-size: 12px; color: var(--ink); padding: 4px 8px 4px 0; white-space: nowrap; }
+.gantt td.who-col { padding: 2px 4px; text-align: center; }
+.gbar { height: 12px; border-radius: 3px; width: 100%; }
+.gbar-lejt { background: #f09595; }
+.gbar-diy { background: #97C459; }
+.gbar-del { background: #FAC775; }
+.gantt-section td { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 0 2px; font-weight: 500; }
+
+/* RISK MATRIX */
+.risk-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.risk-row:last-child { border-bottom: none; }
+.risk-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.risk-high { background: var(--red); }
+.risk-med { background: var(--amber); }
+.risk-low { background: var(--forest); }
+.risk-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.risk-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.risk-action { font-size: 12px; color: var(--forest); margin-top: 4px; font-weight: 400; }
+
+/* CHECKLIST */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-size: 14px;
+}
+.check-item:last-child { border-bottom: none; }
+.check-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: #fff;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 500;
+}
+.check-text { color: var(--ink); line-height: 1.5; }
+.check-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.7s ease both; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* FOOTER */
+footer {
+  background: var(--forest);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 2rem;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+/* SEPARATOR */
+.section-sep { height: 1px; background: rgba(44,95,46,0.1); margin: 0 3rem; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+  section { padding: 3rem 1.5rem; }
+  .hero { padding: 2rem 1.5rem 3rem; min-height: 70vh; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Strand 47 · Vännäs</div>
+  <ul class="nav-links">
+    <li><a href="https://www.hemnet.se/bostad/gard-strand-vannas-kommun-strand-47-21716553" target="_blank" style="color:var(--forest); font-weight:500;">↗ Hemnet</a></li>
+    <li><a href="#oversikt">Översikt</a></li>
+    <li><a href="#finansiering">Finansiering</a></li>
+    <li><a href="#renovering">Renovering</a></li>
+    <li><a href="#skog">Skog</a></li>
+    <li><a href="#tidsplan">Tidsplan</a></li>
+    <li><a href="#risker">Risker</a></li>
+    <li><a href="#beslut">Beslut</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow fade-up">Strand, Vännäs kommun · Maj 2026 · <a href="https://www.hemnet.se/bostad/gard-strand-vannas-kommun-strand-47-21716553" target="_blank" style="color:rgba(255,255,255,0.6); text-decoration:underline; text-underline-offset:3px;">Hemnet-annons ↗</a> · 4 324 besök</div>
+    <div class="verdict-pill fade-up delay-1">
+      <span class="verdict-dot"></span>
+      Välprisad affär – rekommenderas
+    </div>
+    <h1 class="fade-up delay-2">Vår gård<br><em>i Strand</em></h1>
+    <p class="hero-sub fade-up delay-3">38 hektar mark, 33 ha produktiv skog, 105 kvm hus med potential för 250 kvm, ladugård på 294 kvm. En sällsynt möjlighet nära Umeå.</p>
+    <div class="hero-stats fade-up delay-4">
+      <div>
+        <div class="hero-stat-val">2 800 000</div>
+        <div class="hero-stat-label">utropspris kr</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">~1 480 000</div>
+        <div class="hero-stat-label">skogsvärde kr</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">10 500</div>
+        <div class="hero-stat-label">netto boende kr/mån</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">+648 000</div>
+        <div class="hero-stat-label">övervärde dag 1</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ÖVERSIKT -->
+<section id="oversikt">
+  <div class="section-label">Fastigheten</div>
+  <h2 class="section-title">Vad ingår i köpet</h2>
+  <div class="divider"></div>
+
+  <div class="card-grid grid-4" style="margin-bottom:2rem;">
+    <div class="stat-card">
+      <div class="label">Skogsmark</div>
+      <div class="value">33 ha</div>
+      <div class="sub">produktiv, 30–60 år</div>
+    </div>
+    <div class="stat-card" style="background: var(--bark);">
+      <div class="label">Virkesförråd</div>
+      <div class="value">4 366</div>
+      <div class="sub">m³sk · tillväxt 158/år</div>
+    </div>
+    <div class="stat-card" style="background: var(--stone);">
+      <div class="label">Boyta</div>
+      <div class="value">105→250</div>
+      <div class="sub">kvm, 3 plan att inreda</div>
+    </div>
+    <div class="stat-card" style="background: #4a3520;">
+      <div class="label">Ladugård</div>
+      <div class="value">294 kvm</div>
+      <div class="sub">rak stomme, stor potential</div>
+    </div>
+  </div>
+
+  <div class="card-grid grid-2">
+    <div class="card">
+      <h3 style="font-family:var(--serif); font-size:1.2rem; font-weight:400; margin-bottom:1rem;">Fastighetsfakta</h3>
+      <table class="data-table">
+        <tr><td>Adress</td><td class="right bold">Strand 47, Vännäs</td></tr>
+        <tr><td>Total areal</td><td class="right bold">38,7 hektar</td></tr>
+        <tr><td>Åkermark</td><td class="right">4 hektar</td></tr>
+        <tr><td>Medelbonitet</td><td class="right">4,3</td></tr>
+        <tr><td>Driftkostnad</td><td class="right">42 307 kr/år</td></tr>
+        <tr><td>Taxeringsvärde</td><td class="right">2 899 000 kr</td></tr>
+        <tr><td>Utropspris</td><td class="right bold green">2 800 000 kr</td></tr>
+        <tr><td>Avstånd Umeå</td><td class="right">~30 min</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3 style="font-family:var(--serif); font-size:1.2rem; font-weight:400; margin-bottom:1rem;">Varför det är en bra affär</h3>
+      <div class="verdict-box verdict-ok">
+        <span class="verdict-icon">✓</span>
+        <span>Utropspriset är i nivå med taxeringsvärdet – välmotiverat och inte uppblåst</span>
+      </div>
+      <div class="verdict-box verdict-ok">
+        <span class="verdict-icon">✓</span>
+        <span>Skogen är värd ~1 480 000 kr. Hus + mark + ladugård köps implicit för ~1 320 000 kr</span>
+      </div>
+      <div class="verdict-box verdict-ok">
+        <span class="verdict-icon">✓</span>
+        <span>Stora välskötta gårdar nära Umeå är sällsynta – brist driver värde</span>
+      </div>
+      <div class="verdict-box verdict-warn">
+        <span class="verdict-icon">!</span>
+        <span>De 250 kvm förutsätter att oinredda plan godkänns – kräver besiktning av takhöjder</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1rem;">
+    <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">Omgivning & närmiljö</h3>
+    <div class="card-grid grid-3">
+      <div style="padding:1rem; border-radius:12px; background:var(--forest-pale);">
+        <div style="font-size:12px; color:var(--forest); font-weight:500; margin-bottom:4px;">Ridanläggning</div>
+        <div style="font-size:13px; color:var(--muted); line-height:1.5;">I grannbyn – möjlighet för privatryttare att träna. Perfekt om ni eller barnen rider.</div>
+      </div>
+      <div style="padding:1rem; border-radius:12px; background:var(--forest-pale);">
+        <div style="font-size:12px; color:var(--forest); font-weight:500; margin-bottom:4px;">Vännäsby ~2 km</div>
+        <div style="font-size:13px; color:var(--muted); line-height:1.5;">Industrier, affärer, skola och samhällsservice. Nära nog för vardagen, långt nog för lugnet.</div>
+      </div>
+      <div style="padding:1rem; border-radius:12px; background:var(--forest-pale);">
+        <div style="font-size:12px; color:var(--forest); font-weight:500; margin-bottom:4px;">Umeå ~30 min</div>
+        <div style="font-size:13px; color:var(--muted); line-height:1.5;">Pendlingsavstånd till universitetsstad med 130 000 invånare. Stabil arbetsmarknad och bostadsefterfrågan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- FINANSIERING -->
+<section id="finansiering">
+  <div class="section-label">Pengarna</div>
+  <h2 class="section-title">Hur vi finansierar det</h2>
+  <p class="section-sub">Med 650 000 kr i eget kapital, skogsbelåning och ett byggnadskreditiv täcker vi hela projektet. Bolånet blir förvånansvärt litet.</p>
+  <div class="divider"></div>
+
+  <div class="card-grid grid-2" style="margin-bottom:2rem;">
+    <div class="card">
+      <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">Kapitalstruktur</h3>
+      <div class="stacked-bar">
+        <div class="seg" style="width:17%; background:#4a8c4d; color:#fff;">EK</div>
+        <div class="seg" style="width:26%; background:#2C5F2E; color:#fff;">Skog</div>
+        <div class="seg" style="width:7%; background:#7ea8c9; color:#0c447c;">ROT</div>
+        <div class="seg" style="width:50%; background:#c8b8f0; color:#3C3489;">Bolån</div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:1rem;">
+        <span class="badge badge-green">Eget kapital 650 000</span>
+        <span class="badge badge-green">Skog 950 000</span>
+        <span class="badge badge-sky">ROT 268 000</span>
+        <span style="display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:500; background:#ece8f8; color:#3C3489;">Bolån 1 864 000</span>
+      </div>
+      <table class="data-table">
+        <tr><td>Köpeskilling</td><td class="right">2 800 000 kr</td></tr>
+        <tr><td>Renovering (med DIY)</td><td class="right">~1 200 000 kr</td></tr>
+        <tr><td class="bold">Total investering</td><td class="right bold">~4 000 000 kr</td></tr>
+        <tr><td>– Eget kapital</td><td class="right green">–650 000 kr</td></tr>
+        <tr><td>– Skogsbelåning (70%)</td><td class="right green">–950 000 kr</td></tr>
+        <tr><td>– ROT-avdrag</td><td class="right" style="color:var(--sky);">–268 000 kr</td></tr>
+        <tr class="total"><td>Resterande bolån</td><td class="right green">1 864 000 kr</td></tr>
+      </table>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:16px;">
+        <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">Månadsekonomi</h3>
+        <table class="data-table">
+          <tr><td>Bolån 1,86 mkr @ 4%</td><td class="right">6 200 kr</td></tr>
+          <tr><td>Skogsbelåning @ 3,5%</td><td class="right">2 770 kr</td></tr>
+          <tr><td>Amortering totalt</td><td class="right">4 700 kr</td></tr>
+          <tr><td>Skogsintäkt + arrende</td><td class="right green">–3 210 kr</td></tr>
+          <tr class="total"><td>Nettokostnad boende</td><td class="right green">~10 460 kr/mån</td></tr>
+        </table>
+        <div style="margin-top:1rem; padding:12px; background:var(--forest-pale); border-radius:10px;">
+          <div style="font-size:12px; color:var(--forest); margin-bottom:4px;">Andel av nettolön</div>
+          <div class="prog-row" style="margin:0;">
+            <div class="prog-track">
+              <div class="prog-fill" style="width:14.5%;"></div>
+            </div>
+          </div>
+          <div style="font-size:13px; color:var(--forest); margin-top:4px; font-weight:500;">14,5% – exceptionellt lågt</div>
+        </div>
+      </div>
+
+      <div class="card-grid grid-2">
+        <div class="light-stat">
+          <div class="label">Nettolön ihop</div>
+          <div class="value">72 000</div>
+          <div class="sub">kr/mån</div>
+        </div>
+        <div class="light-stat">
+          <div class="label">Kvar varje månad</div>
+          <div class="value">~61 500</div>
+          <div class="sub">kr efter allt</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">Tre finansieringskällor – alla tre används</h3>
+    <div class="card-grid grid-3">
+      <div style="padding:1rem; border-radius:12px; background:var(--forest-pale);">
+        <div style="font-size:12px; color:var(--forest); font-weight:500; margin-bottom:6px;">1. Eget kapital</div>
+        <div style="font-size:1.4rem; font-weight:500; color:var(--forest); margin-bottom:4px;">650 000 kr</div>
+        <div style="font-size:12px; color:#4a8c4d;">Insats vid köp</div>
+      </div>
+      <div style="padding:1rem; border-radius:12px; background:var(--forest-pale);">
+        <div style="font-size:12px; color:var(--forest); font-weight:500; margin-bottom:6px;">2. Skogsbelåning</div>
+        <div style="font-size:1.4rem; font-weight:500; color:var(--forest); margin-bottom:4px;">950 000 kr</div>
+        <div style="font-size:12px; color:#4a8c4d;">Landshypotek · 3,5% · skogen betalar räntan</div>
+      </div>
+      <div style="padding:1rem; border-radius:12px; background:var(--sky-pale);">
+        <div style="font-size:12px; color:var(--sky); font-weight:500; margin-bottom:6px;">3. Byggnadskreditiv</div>
+        <div style="font-size:1.4rem; font-weight:500; color:var(--sky); margin-bottom:4px;">~1 132 000 kr</div>
+        <div style="font-size:12px; color:#185fa5;">Dras ned löpande under renovering · betalar bara ränta på utnyttjat</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- RENOVERING -->
+<section id="renovering">
+  <div class="section-label">Renoveringen</div>
+  <h2 class="section-title">Vad som ska göras – och vem som gör det</h2>
+  <p class="section-sub">Med familjeelektriker och eget arbete sparar vi ~920 000 kr jämfört med fullt lejt. Det är skillnaden mellan en marginell affär och ett tydligt övervärde.</p>
+  <div class="divider"></div>
+
+  <div class="card-grid grid-4" style="margin-bottom:2rem;">
+    <div class="light-stat">
+      <div class="label">Fullt lejt</div>
+      <div class="value" style="color:var(--red); font-size:1.4rem;">2 122 000</div>
+      <div class="sub">kr realistiskt</div>
+    </div>
+    <div class="light-stat">
+      <div class="label">DIY-besparing</div>
+      <div class="value">–530 000</div>
+      <div class="sub">kr eget arbete</div>
+    </div>
+    <div class="light-stat">
+      <div class="label">Familjeelektriker</div>
+      <div class="value">–130 000</div>
+      <div class="sub">kr el-kostnad sparas</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Vår renovering</div>
+      <div class="value">~1 200 000</div>
+      <div class="sub">kr total kostnad</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:1.5rem;">
+    <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">Budgetposter med DIY-uppdelning</h3>
+    <div style="overflow-x:auto;">
+      <table class="data-table" style="min-width:600px;">
+        <thead>
+          <tr>
+            <th>Åtgärd</th>
+            <th>Realist. pris</th>
+            <th>DIY?</th>
+            <th class="right">Vår kostnad</th>
+            <th class="right">Besparing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" style="font-size:11px; color:var(--muted); padding:10px 12px 4px; font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">Måste lejas – lagkrav</td></tr>
+          <tr><td>Berg-/jordvärme + värmepump</td><td>280 000</td><td><span class="badge badge-red">Lejt</span></td><td class="right">280 000</td><td class="right">–</td></tr>
+          <tr><td>VVS-dragning plan 2 & 3</td><td>120 000</td><td><span class="badge badge-red">Lejt</span></td><td class="right">120 000</td><td class="right">–</td></tr>
+          <tr><td>Ny el – central + kablar</td><td>130 000</td><td><span class="badge badge-green">Familj!</span></td><td class="right green">0</td><td class="right green">130 000</td></tr>
+          <tr><td>Badrum (membran, kakel)</td><td>100 000</td><td><span class="badge badge-amber">Delvis</span></td><td class="right">40 000</td><td class="right green">60 000</td></tr>
+          <tr><td>Ventilation FTX</td><td>80 000</td><td><span class="badge badge-red">Lejt</span></td><td class="right">80 000</td><td class="right">–</td></tr>
+          <tr><td colspan="5" style="font-size:11px; color:var(--muted); padding:10px 12px 4px; font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">DIY – eget arbete</td></tr>
+          <tr><td>Brädfodring + lockläkt (~200 m²) <span style="font-size:11px;color:var(--muted);">nuv. masonit</span></td><td>180 000</td><td><span class="badge badge-amber">Delvis</span></td><td class="right">90 000</td><td class="right green">90 000</td></tr>
+          <tr><td>Fönsterrenovering</td><td>120 000</td><td><span class="badge badge-amber">Delvis</span></td><td class="right">60 000</td><td class="right green">60 000</td></tr>
+          <tr><td>Golvslipning & oljning (5 rum)</td><td>65 000</td><td><span class="badge badge-green">DIY</span></td><td class="right">8 000</td><td class="right green">57 000</td></tr>
+          <tr><td>Väggar & tak – målning</td><td>105 000</td><td><span class="badge badge-green">DIY</span></td><td class="right">17 000</td><td class="right green">88 000</td></tr>
+          <tr><td>Köksrenovering</td><td>150 000</td><td><span class="badge badge-amber">Delvis</span></td><td class="right">70 000</td><td class="right green">80 000</td></tr>
+          <tr><td>Skivbeklädnad väggar</td><td>100 000</td><td><span class="badge badge-amber">Delvis</span></td><td class="right">40 000</td><td class="right green">60 000</td></tr>
+          <tr><td>Lutning / avvägning golv</td><td>45 000</td><td><span class="badge badge-red">Lejt</span></td><td class="right">45 000</td><td class="right">–</td></tr>
+          <tr><td>Oförutsett (15%)</td><td>–</td><td>–</td><td class="right amber">150 000</td><td class="right">–</td></tr>
+        </tbody>
+        <tfoot>
+          <tr class="total">
+            <td class="bold">Totalt</td>
+            <td>2 122 000</td>
+            <td></td>
+            <td class="right bold green">~1 200 000</td>
+            <td class="right bold green">~922 000</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="card-grid grid-2">
+    <div class="card">
+      <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">ROT-avdrag – 268 000 kr tillbaka</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:1rem; line-height:1.6;">30% skattereduktion på arbetskostnad för lejda hantverkare. Ni når taket med god marginal på er inkomstnivå.</p>
+      <div class="prog-row">
+        <div class="prog-label"><span>Möjligt ROT-avdrag</span><span>268 275 kr</span></div>
+        <div class="prog-track"><div class="prog-fill" style="width:89%;"></div></div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label"><span>Max nyttjbart (2 pers × 3 år)</span><span>300 000 kr</span></div>
+        <div class="prog-track"><div class="prog-fill" style="width:100%; background:rgba(44,95,46,0.25);"></div></div>
+      </div>
+      <div class="verdict-box verdict-info" style="margin-top:0.5rem;">
+        <span class="verdict-icon">i</span>
+        <span>Hela 268 000 kr utnyttjas – ni behöver inte sprida ut det, ROT-taket nås på 2–3 år</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">Fastighetsvärde efter renovering</h3>
+      <table class="data-table">
+        <tr><td>Renoverat hus ~250 kvm</td><td class="right">2 300 000</td></tr>
+        <tr><td>Skogsmark</td><td class="right">1 480 000</td></tr>
+        <tr><td>Åkermark 4 ha</td><td class="right">300 000</td></tr>
+        <tr><td>Ladugård 294 kvm</td><td class="right">300 000</td></tr>
+        <tr class="total"><td>Totalt marknadsvärde</td><td class="right green">~4 380 000 kr</td></tr>
+        <tr><td>Total investering</td><td class="right">~3 732 000 kr</td></tr>
+        <tr class="total"><td style="color:var(--forest);">Övervärde dag 1</td><td class="right green bold">+648 000 kr</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- SKOG -->
+<section id="skog">
+  <div class="section-label">Skogen</div>
+  <h2 class="section-title">Tillgången som växer av sig självt</h2>
+  <p class="section-sub">Skogen är inte primärt en inkomstkälla idag – den är ett kapitalbygge. Den stora slutavverkningen väntar om 20–30 år.</p>
+  <div class="divider"></div>
+
+  <div class="card-grid grid-4" style="margin-bottom:2rem;">
+    <div class="stat-card">
+      <div class="label">Virkesförråd</div>
+      <div class="value">4 366</div>
+      <div class="sub">m³sk totalt</div>
+    </div>
+    <div class="stat-card" style="background:var(--bark);">
+      <div class="label">Marknadspris</div>
+      <div class="value">339 kr</div>
+      <div class="sub">per m³sk (H1 2025)</div>
+    </div>
+    <div class="stat-card" style="background:var(--stone);">
+      <div class="label">Skogsvärde</div>
+      <div class="value">~1 480 000</div>
+      <div class="sub">kr idag</div>
+    </div>
+    <div class="light-stat">
+      <div class="label">Löpande avkastning</div>
+      <div class="value">~38 600</div>
+      <div class="sub">kr/år direkt</div>
+    </div>
+  </div>
+
+  <div class="card-grid grid-2">
+    <div class="card">
+      <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">Ekonomi från skogen</h3>
+      <table class="data-table">
+        <tr><td>Skogsbruk, gallring (rotnetto)</td><td class="right green">31 600 kr/år</td></tr>
+        <tr><td>Åkerarrende (4 ha)</td><td class="right green">7 000 kr/år</td></tr>
+        <tr><td class="bold">Direktavkastning</td><td class="right bold green">38 600 kr/år</td></tr>
+        <tr><td>+ Värdetillväxt i stående skog</td><td class="right" style="color:var(--sky);">31 600 kr/år</td></tr>
+        <tr class="total"><td>Total ekonomisk nytta</td><td class="right green">70 200 kr/år</td></tr>
+      </table>
+      <div class="verdict-box verdict-info" style="margin-top:1rem;">
+        <span class="verdict-icon">i</span>
+        <span>Skogsbelåningens ränta (~33 250 kr/år) täcks nästan helt av direktavkastningen. Skogen finansierar sitt eget lån.</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">Prisutveckling norra Sverige</h3>
+      <table class="data-table">
+        <tr><td>2023 (helår)</td><td class="right">371 kr/m³sk</td></tr>
+        <tr><td>2024 H1 – botten</td><td class="right red">296 kr/m³sk</td></tr>
+        <tr class="total"><td>2025 H1 – nu</td><td class="right green">339 kr/m³sk (+2,6%)</td></tr>
+      </table>
+      <p style="font-size:13px; color:var(--muted); margin-top:1rem; line-height:1.6;">Marknaden har vänt uppåt. Skogsmark har stigit 5,7% i snitt i Sverige under H1 2025. <em>Källa: Ludvig & Co, 2025.</em></p>
+      <div class="verdict-box verdict-ok" style="margin-top:0.5rem;">
+        <span class="verdict-icon">✓</span>
+        <span>Skogen är ett golv under fastighetsvärdet. Oavsett vad huset är värt finns 1,3–1,6 mkr i skogsmark att falla tillbaka på.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- TIDSPLAN -->
+<section id="tidsplan">
+  <div class="section-label">Tidsplan</div>
+  <h2 class="section-title">Klart på 2 månader – hur?</h2>
+  <p class="section-sub">Med familjehjälp, elektriker i familjen och ett intensivt kampanjupplägg är 2 månader möjligt – men kräver att hantverkare är bokade från dag 1 och att alla är tillgängliga.</p>
+  <div class="divider"></div>
+
+  <div class="card-grid grid-2" style="margin-bottom:2rem;">
+    <div class="card" style="border-left:3px solid var(--amber); border-radius:0 16px 16px 0;">
+      <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:0.75rem; color:var(--amber);">Förutsättningar för 2 månader</h3>
+      <div class="check-item">
+        <div class="check-num" style="background:var(--amber);">1</div>
+        <div class="check-text">Elektriker (familj) och VVS-firma bokade och klara vecka 1–4<div class="check-sub">Utan dem stannar allt annat upp</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-num" style="background:var(--amber);">2</div>
+        <div class="check-text">3–4 personer jobbar heltid veckorna 3–8<div class="check-sub">Brädfodring och målning är kampanjjobb, inte kvällsjobb</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-num" style="background:var(--amber);">3</div>
+        <div class="check-text">Optimistiskt scenario – allt går som planerat<div class="check-sub">Fukt, skeva golv eller surpriser kan förlänga med 4–8 veckor</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-num" style="background:var(--amber);">4</div>
+        <div class="check-text">Material beställt INNAN tillträde<div class="check-sub">Brädor, fönster, köksinredning – leveranstider 3–6 veckor</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:0.75rem;">Tidsscenarier</h3>
+      <table class="data-table">
+        <tr><td><span class="badge badge-green">Optimistiskt</span></td><td class="right bold green">8 veckor</td></tr>
+        <tr><td class="muted" style="font-size:12px; padding-left:20px;">Allt klart, hantverkare direkt, full familjeinsats</td><td></td></tr>
+        <tr><td><span class="badge badge-amber">Realistiskt</span></td><td class="right bold amber">12–16 veckor</td></tr>
+        <tr><td class="muted" style="font-size:12px; padding-left:20px;">Normalt tempo, varannan vecka DIY</td><td></td></tr>
+        <tr><td><span class="badge badge-red">Pessimistiskt</span></td><td class="right bold red">24–32 veckor</td></tr>
+        <tr><td class="muted" style="font-size:12px; padding-left:20px;">Hantverkarbrist, överraskningar, deltid</td><td></td></tr>
+      </table>
+      <div class="verdict-box verdict-warn" style="margin-top:1rem;">
+        <span class="verdict-icon">!</span>
+        <span>Hantverkarbrist i Västerbotten är påtaglig. Börja ringa hantverkare <strong>innan</strong> ni skriver på kontraktet.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1.25rem;">Gantt – 8 veckors intensivplan</h3>
+    <div class="gantt-wrap">
+      <table class="gantt">
+        <thead>
+          <tr>
+            <th class="task-col">Åtgärd</th>
+            <th class="who-col">Vem</th>
+            <th>V1</th><th>V2</th><th>V3</th><th>V4</th>
+            <th>V5</th><th>V6</th><th>V7</th><th>V8</th>
+          </tr>
+        </thead>
+        <tbody id="gantt-body"></tbody>
+      </table>
+    </div>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:12px;">
+      <div style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted);"><div style="width:12px;height:8px;border-radius:2px;background:#f09595;"></div>Lejt hantverkare</div>
+      <div style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted);"><div style="width:12px;height:8px;border-radius:2px;background:#97C459;"></div>Eget / familj</div>
+      <div style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted);"><div style="width:12px;height:8px;border-radius:2px;background:#FAC775;"></div>Delvis DIY</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- RISKER -->
+<section id="risker">
+  <div class="section-label">Risker</div>
+  <h2 class="section-title">Vad kan gå fel – och vad vi gör åt det</h2>
+  <div class="divider"></div>
+
+  <div class="card-grid grid-2">
+    <div class="card">
+      <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">Riskmatris</h3>
+      <div class="risk-row">
+        <div class="risk-dot risk-high"></div>
+        <div>
+          <div class="risk-title">Fukt & grundläggning</div>
+          <div class="risk-desc">Ej budgeterat. Kan kosta 80–200 000 kr extra. Vanligt i äldre lantgårdar.</div>
+          <div class="risk-action">→ Fuktmätning är kritisk besiktningspunkt</div>
+        </div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-dot risk-high"></div>
+        <div>
+          <div class="risk-title">Oinredda plan godkänns ej som boyta</div>
+          <div class="risk-desc">Om takhöjd &lt;2,10 m eller bygglov ej beviljas försvinner den beräknade ytan.</div>
+          <div class="risk-action">→ Kontrollera takhöjd och bygglovsmöjlighet INNAN köp</div>
+        </div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-dot risk-high"></div>
+        <div>
+          <div class="risk-title">Renoveringen drar ut på tiden</div>
+          <div class="risk-desc">2 månader är optimistiskt. Hantverkarbrist kan förlänga med månader.</div>
+          <div class="risk-action">→ Boka hantverkare innan tillträde, ha plan B</div>
+        </div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-dot risk-med"></div>
+        <div>
+          <div class="risk-title">Renoveringskostnad överstiger budget</div>
+          <div class="risk-desc">1,2 mkr är tight. Pessimistiskt scenario är 3,5 mkr om allt går fel.</div>
+          <div class="risk-action">→ Byggnadskreditivet ger flexibilitet, buffert 20%</div>
+        </div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-dot risk-med"></div>
+        <div>
+          <div class="risk-title">Svår att sälja snabbt</div>
+          <div class="risk-desc">Gårdar tar 60+ dagar att sälja. Inte en likvid tillgång.</div>
+          <div class="risk-action">→ Håll separat likviditetsbuffert</div>
+        </div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-dot risk-low"></div>
+        <div>
+          <div class="risk-title">Skogsmarkspriset faller</div>
+          <div class="risk-desc">Marknaden har haft svängningar (–20% 2024, +3% 2025).</div>
+          <div class="risk-action">→ Tillväxten 158 m³sk/år kompenserar på 5–10 år</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:16px;">
+        <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:400; margin-bottom:1rem;">Prisgräns – när är det inte klokt?</h3>
+        <p style="font-size:13px; color:var(--muted); margin-bottom:1rem; line-height:1.6;">Maximal köpeskilling för att totalt investerat kapital ska understiga fastighetsvärdet:</p>
+        <table class="data-table">
+          <tr><td>Renovering ~1,2 mkr (vår plan)</td><td class="right"><span class="badge badge-green">Max 3 200 000 kr</span></td></tr>
+          <tr><td>Renovering ~2,1 mkr (fullt lejt)</td><td class="right"><span class="badge badge-amber">Max 2 900 000 kr</span></td></tr>
+          <tr><td>Renovering ~3,5 mkr (pessimist.)</td><td class="right"><span class="badge badge-red">Max 2 500 000 kr</span></td></tr>
+        </table>
+        <div class="verdict-box verdict-ok" style="margin-top:1rem;">
+          <span class="verdict-icon">✓</span>
+          <span>Utropspris 2 800 000 kr är 400 000 kr under smärtgränsen i vår plan. God marginal.</span>
+        </div>
+      </div>
+
+      <div class="card" style="background:var(--forest); color:#fff;">
+        <h3 style="font-family:var(--serif); font-size:1.1rem; font-weight:300; color:#fff; margin-bottom:1rem;">Risknivå: sammantaget</h3>
+        <div style="margin-bottom:10px;">
+          <div style="font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:5px;">Finansiell risk</div>
+          <div style="height:6px; background:rgba(255,255,255,0.15); border-radius:3px;">
+            <div style="height:100%; width:25%; background:#7ee87a; border-radius:3px;"></div>
+          </div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px;">Låg – bolånet är litet för er inkomst</div>
+        </div>
+        <div style="margin-bottom:10px;">
+          <div style="font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:5px;">Renoveringsrisk</div>
+          <div style="height:6px; background:rgba(255,255,255,0.15); border-radius:3px;">
+            <div style="height:100%; width:60%; background:#FAC775; border-radius:3px;"></div>
+          </div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px;">Medel – besiktning krävs</div>
+        </div>
+        <div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:5px;">Tidplan-risk</div>
+          <div style="height:6px; background:rgba(255,255,255,0.15); border-radius:3px;">
+            <div style="height:100%; width:70%; background:#f09595; border-radius:3px;"></div>
+          </div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px;">Hög – 2 mån är tight, kräver full mobilisering</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- BESLUT -->
+<section id="beslut">
+  <div class="section-label">Slutsats</div>
+  <h2 class="section-title">Ska vi köpa?</h2>
+  <div class="divider"></div>
+
+  <div class="card-grid grid-2" style="margin-bottom:2rem;">
+    <div>
+      <div class="verdict-box verdict-ok" style="font-size:15px; padding:1rem 1.25rem;">
+        <span class="verdict-icon">✓</span>
+        <div><strong>Priset är rätt.</strong> 2,8 mkr för en fastighet med ~1,5 mkr i ren skogsmark är välmotiverat. Vi betalar ~1,3 mkr för hus, mark och ladugård.</div>
+      </div>
+      <div class="verdict-box verdict-ok" style="font-size:15px; padding:1rem 1.25rem;">
+        <span class="verdict-icon">✓</span>
+        <div><strong>Finansieringen håller.</strong> Bolånet på 1,86 mkr är bara 14,5% av vår nettolön. Vi har ~61 500 kr kvar varje månad.</div>
+      </div>
+      <div class="verdict-box verdict-ok" style="font-size:15px; padding:1rem 1.25rem;">
+        <span class="verdict-icon">✓</span>
+        <div><strong>Vi skapar övervärde.</strong> Med DIY och familjeelektriker investerar vi ~3,7 mkr i en fastighet värd ~4,4 mkr. +648 000 kr från dag 1.</div>
+      </div>
+      <div class="verdict-box verdict-ok" style="font-size:15px; padding:1rem 1.25rem;">
+        <span class="verdict-icon">✓</span>
+        <div><strong>Skogen är ett långsiktigt kapital.</strong> Den växer med 158 m³sk/år och den stora slutavverkningen om 20–30 år kan vara värd miljoner.</div>
+      </div>
+      <div class="verdict-box verdict-warn" style="font-size:15px; padding:1rem 1.25rem;">
+        <span class="verdict-icon">!</span>
+        <div><strong>Besiktning är obligatorisk.</strong> Fukt/grund, takhöjder på plan 2 & 3 och elstatus måste bekräftas innan bud.</div>
+      </div>
+    </div>
+
+    <div class="card" style="background:var(--forest);">
+      <h3 style="font-family:var(--serif); font-size:1.4rem; font-weight:300; color:#fff; margin-bottom:1.5rem;">Nästa steg</h3>
+      <div class="check-item" style="border-color:rgba(255,255,255,0.1);">
+        <div class="check-num" style="background:rgba(255,255,255,0.2); color:#fff; flex-shrink:0;">1</div>
+        <div style="color:rgba(255,255,255,0.85);">
+          Boka besiktning med byggnadsingenjör
+          <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:2px;">Fokus: fukt/grund, takhöjder plan 2 & 3, el-status, VA</div>
+        </div>
+      </div>
+      <div class="check-item" style="border-color:rgba(255,255,255,0.1);">
+        <div class="check-num" style="background:rgba(255,255,255,0.2); color:#fff; flex-shrink:0;">2</div>
+        <div style="color:rgba(255,255,255,0.85);">
+          Kontakta Landshypotek om finansiering
+          <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:2px;">Bolån + skogsbelåning + byggnadskreditiv i ett paket</div>
+        </div>
+      </div>
+      <div class="check-item" style="border-color:rgba(255,255,255,0.1);">
+        <div class="check-num" style="background:rgba(255,255,255,0.2); color:#fff; flex-shrink:0;">3</div>
+        <div style="color:rgba(255,255,255,0.85);">
+          Ring VVS-firma nu – innan bud
+          <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:2px;">Hantverkarbrist i Västerbotten – 2–4 mån väntetid</div>
+        </div>
+      </div>
+      <div class="check-item" style="border-color:rgba(255,255,255,0.1);">
+        <div class="check-num" style="background:rgba(255,255,255,0.2); color:#fff; flex-shrink:0;">4</div>
+        <div style="color:rgba(255,255,255,0.85);">
+          Kolla bygglov för plan 2 & 3
+          <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:2px;">Takhöjd min 2,10 m krävs för godkänd boyta</div>
+        </div>
+      </div>
+      <div class="check-item" style="border-color:rgba(255,255,255,0.1);">
+        <div class="check-num" style="background:rgba(255,255,255,0.2); color:#fff; flex-shrink:0;">5</div>
+        <div style="color:rgba(255,255,255,0.85);">
+          Kontakta mäklaren Håkan Wiklund
+          <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:2px;">Ludvig & Co · 070-691 11 24 · fråga om jämförelsefall</div>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem; padding:1rem; background:rgba(255,255,255,0.1); border-radius:10px;">
+        <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Vår bedömning</div>
+        <div style="font-size:16px; color:#fff; font-weight:400; line-height:1.5; font-family:var(--serif); font-style:italic;">"En sund affär om besiktningen bekräftar huset skick. Prisgränsen är 3,2 mkr – vi har god marginal."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Strand 47 · Vännäs kommun · Beslutsunderlag maj 2026 · Alla siffror är uppskattningar baserade på tillgänglig marknadsdata
+</footer>
+
+<script>
+function gRow(tbody, label, who, type, weeks, totalW) {
+  const tr = document.createElement('tr');
+  const tdL = document.createElement('td'); tdL.className = 'task-col'; tdL.textContent = label; tr.appendChild(tdL);
+  const tdW = document.createElement('td'); tdW.className = 'who-col';
+  const b = document.createElement('span'); b.className = 'badge badge-' + (type==='lejt'?'red':type==='diy'?'green':'amber');
+  b.textContent = who; tdW.appendChild(b); tr.appendChild(tdW);
+  for (let i = 1; i <= totalW; i++) {
+    const td = document.createElement('td');
+    if (i >= weeks[0] && i <= weeks[1]) {
+      const bar = document.createElement('div');
+      bar.className = 'gbar gbar-' + type;
+      td.appendChild(bar);
+    }
+    tr.appendChild(td);
+  }
+  tbody.appendChild(tr);
+}
+function gSec(tbody, text, totalW) {
+  const tr = document.createElement('tr'); tr.className = 'gantt-section';
+  const td = document.createElement('td'); td.colSpan = totalW + 2; td.textContent = text; tr.appendChild(td);
+  tbody.appendChild(tr);
+}
+
+const gb = document.getElementById('gantt-body');
+const W = 8;
+gSec(gb, 'Lejt – kritisk kedja (vecka 1–4)', W);
+gRow(gb, 'Ny el (familjeelektriker)', 'Familj', 'diy', [1,4], W);
+gRow(gb, 'VVS – stam plan 2 & 3', 'VVS', 'lejt', [1,3], W);
+gRow(gb, 'Bergvärme + värmepump', 'Lejt', 'lejt', [1,4], W);
+gSec(gb, 'DIY – kampanjjobb (vecka 3–8)', W);
+gRow(gb, 'Brädfodring + lockläkt', 'DIY', 'del', [3,7], W);
+gRow(gb, 'Fönster – kittning & målning', 'DIY', 'diy', [3,6], W);
+gRow(gb, 'Badrum + lutning golv', 'Del.', 'lejt', [4,6], W);
+gRow(gb, 'Skivbeklädnad väggar', 'DIY', 'del', [5,7], W);
+gRow(gb, 'Väggar & tak – målning', 'DIY', 'diy', [6,8], W);
+gRow(gb, 'Golvslipning & oljning', 'DIY', 'diy', [7,8], W);
+</script>
+
+</body>
+</html>
